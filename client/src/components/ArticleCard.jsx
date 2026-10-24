@@ -64,10 +64,14 @@ export default function ArticleCard({
       >
         <Link to={articleUrl} className="hero-image-wrapper" tabIndex={-1}>
           <img
-            src={article.imageUrl}
+            src={article.imageUrl || 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1200&q=80'}
             alt={article.title}
             loading="lazy"
             className="hero-image"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1200&q=80';
+            }}
           />
           <span className="hero-category-badge">{article.category}</span>
         </Link>
@@ -202,10 +206,14 @@ export default function ArticleCard({
     >
       <Link to={articleUrl} className="card-image-box" tabIndex={-1}>
         <img
-          src={article.imageUrl}
+          src={article.imageUrl || 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1200&q=80'}
           alt={article.title}
           loading="lazy"
           className="card-image"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1200&q=80';
+          }}
         />
         <span className="card-category-badge">{article.category}</span>
       </Link>

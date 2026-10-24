@@ -436,6 +436,10 @@ export default function ArticleDetailPage({
               src={article.imageUrl}
               alt={article.title}
               className="detail-featured-image"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1200&q=80';
+              }}
             />
             <figcaption className="detail-caption">
               Documentary reportage for BEYOND HEADLINES. Investigative archives & telemetry records.
