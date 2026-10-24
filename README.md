@@ -1,5 +1,6 @@
 # Beyond Headlines — Editorial Publishing Platform & News Portal
 
+[![Live Portal](https://img.shields.io/badge/Live_Portal-beyond--headlines-0f2b5c?style=flat-square&logo=vercel)](https://beyond-headlines-hazel.vercel.app/)
 [![React](https://img.shields.io/badge/React-19.0-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Node.js](https://img.shields.io/badge/Node.js-20+-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -8,6 +9,8 @@
 [![License](https://img.shields.io/badge/License-MIT-0f2b5c?style=flat-square)](LICENSE)
 
 An enterprise-grade, full-stack news publishing and editorial management platform built with the MERN stack. Designed with a clean, high-contrast broadsheet aesthetic featuring a pure white background, deep editorial navy accenting (`#0f2b5c`), and rigorous typography engineered for authoritative journalism.
+
+**Live Portal**: [https://beyond-headlines-hazel.vercel.app/](https://beyond-headlines-hazel.vercel.app/)
 
 ---
 
@@ -191,7 +194,7 @@ cd client
 npm run dev
 ```
 - Application Interface: `http://localhost:5173`
-- Admin Login Portal: `http://localhost:5173/admin/login`
+- Live Deployment: [https://beyond-headlines-hazel.vercel.app/](https://beyond-headlines-hazel.vercel.app/)
 
 ---
 
