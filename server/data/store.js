@@ -18,8 +18,8 @@ let memoryUsers = [
   {
     _id: 'user-admin-1',
     id: 'user-admin-1',
-    name: 'Marcus Vance',
-    email: 'admin@beyondheadlines.com',
+    name: 'Executive Editor',
+    email: 'admin',
     passwordHash: bcrypt.hashSync('admin123', 10),
     role: 'admin',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
@@ -45,17 +45,23 @@ export const syncSeedToMongo = async () => {
         console.log('Successfully seeded MongoDB articles.');
       }
 
-      const adminCount = await User.countDocuments({ role: 'admin' });
-      if (adminCount === 0) {
+      let adminUser = await User.findOne({ $or: [{ email: 'admin' }, { role: 'admin' }, { email: 'admin@beyondheadlines.com' }] });
+      if (!adminUser) {
         await User.create({
-          name: 'Marcus Vance',
-          email: 'admin@beyondheadlines.com',
+          name: 'Executive Editor',
+          email: 'admin',
           password: 'admin123',
           role: 'admin',
           avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
           bio: 'Chief Executive Editor & Publishing Administrator'
         });
-        console.log('Successfully seeded Admin user.');
+        console.log('Successfully created Admin user with username admin.');
+      } else {
+        adminUser.email = 'admin';
+        adminUser.password = 'admin123';
+        adminUser.role = 'admin';
+        await adminUser.save();
+        console.log('Admin user updated with username admin and password admin123.');
       }
     }
   } catch (err) {

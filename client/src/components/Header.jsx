@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, User, Bookmark, LogOut, Radio, X, LogIn, UserPlus, Settings } from 'lucide-react';
+import { Search, User, Bookmark, LogOut, Radio, X, LogIn, UserPlus, Settings, ShieldCheck } from 'lucide-react';
 
 const TOPICS = [
   'Home',
@@ -251,6 +251,22 @@ export default function Header({
                             <Bookmark size={15} />
                             <span>Saved Articles ({savedCount})</span>
                           </button>
+
+                          {currentUser?.role === 'admin' && (
+                            <button
+                              type="button"
+                              className="dropdown-item"
+                              onClick={() => {
+                                setUserDropdownOpen(false);
+                                navigate('/admin/dashboard');
+                              }}
+                              id="dropdown-admin-console-btn"
+                              style={{ color: '#0f2b5c', fontWeight: 600 }}
+                            >
+                              <ShieldCheck size={15} />
+                              <span>Editorial Console</span>
+                            </button>
+                          )}
 
                           <div className="dropdown-divider"></div>
 

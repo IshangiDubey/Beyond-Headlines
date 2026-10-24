@@ -135,13 +135,13 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess, apiBaseUrl, 
           )}
 
           <div className="form-group">
-            <label htmlFor="auth-email">Email Address</label>
+            <label htmlFor="auth-email">Email or Username</label>
             <div className="input-with-icon">
               <Mail size={16} className="form-icon" />
               <input
                 id="auth-email"
-                type="email"
-                placeholder="name@example.com"
+                type="text"
+                placeholder="name@example.com or admin"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
