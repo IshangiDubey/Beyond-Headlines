@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { 
-  ShieldCheck, 
   Lock, 
   Mail, 
   Eye, 
@@ -9,13 +8,8 @@ import {
   ArrowRight, 
   ArrowLeft, 
   AlertCircle, 
-  CheckCircle2, 
-  Key, 
-  Shield, 
-  Clock, 
-  Radio,
-  Newspaper,
-  MessageSquare
+  CheckCircle2,
+  Check
 } from 'lucide-react';
 
 export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', onAdminLoginSuccess }) {
@@ -29,10 +23,8 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [twoFactorPin, setTwoFactorPin] = useState('');
-  const [showPinInput, setShowPinInput] = useState(false);
 
-  // Strictly prevent any mousewheel or touch scrolling on the executive showcase sidebar
+  // Prevent any mousewheel or touch scrolling on the left sidebar
   useEffect(() => {
     const el = showcaseRef.current;
     if (!el) return;
@@ -53,7 +45,7 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
     setError(null);
 
     if (!email.trim() || !password) {
-      setError('Please provide your editorial administrator credentials.');
+      setError('Please provide your administrative credentials.');
       return;
     }
 
@@ -88,7 +80,7 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
 
       setTimeout(() => {
         navigate('/admin/dashboard');
-      }, 1200);
+      }, 1000);
     } catch (err) {
       setError(err.message || 'Administrative authentication failed.');
     } finally {
@@ -100,11 +92,10 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
     <div className="admin-login-viewport">
       <div className="admin-login-layout-card">
         {/* ========================================================
-            LEFT COLUMN: EXECUTIVE SHOWCASE & MASTHEAD BRANDING
+            LEFT COLUMN: CLEAN NEWSROOM BRANDING
             ======================================================== */}
         <div className="admin-showcase-panel" ref={showcaseRef}>
-          <div className="admin-showcase-top">
-            {/* Logo Badge */}
+          <div className="admin-showcase-content">
             <div className="admin-brand-lockup">
               <img
                 src="/beyond-headlines-logo.png"
@@ -113,100 +104,48 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
               />
             </div>
 
-            <div className="admin-masthead-pill">
-              <Shield size={12} className="admin-masthead-icon" />
-              <span>EDITORIAL CONSOLE • SECURE GATEWAY</span>
-            </div>
-
             <h2 className="admin-showcase-headline">
-              Your newsroom, under complete control.
+              Editorial Console
             </h2>
 
             <p className="admin-showcase-subtext">
-              Unified command center for Senior Desk Editors, Bureau Chiefs, and System Administrators. 
-              Manage dispatches, desks, comments, ad banners, and publication architecture — all from one place.
+              Authorized publishing console for Beyond Headlines editors, bureau correspondents, and newsroom administrators.
             </p>
-          </div>
 
-          {/* Core Modules Grid (Inspired by Modern Newsroom CMS) */}
-          <div className="admin-modules-grid">
-            <div className="module-feature-chip">
-              <Newspaper size={14} className="module-icon" />
-              <span>Articles & Dispatches</span>
-            </div>
-            <div className="module-feature-chip">
-              <Radio size={14} className="module-icon" />
-              <span>8 Editorial Desks</span>
-            </div>
-            <div className="module-feature-chip">
-              <MessageSquare size={14} className="module-icon" />
-              <span>Comments Moderation</span>
-            </div>
-            <div className="module-feature-chip">
-              <Clock size={14} className="module-icon" />
-              <span>Traffic & Analytics</span>
-            </div>
-          </div>
-
-          {/* Telemetry Status Badges */}
-          <div className="admin-telemetry-grid">
-            <div className="telemetry-badge-card">
-              <div className="telemetry-header">
-                <span className="telemetry-pulse-dot" />
-                <span className="telemetry-label">Newsroom CMS</span>
-              </div>
-              <span className="telemetry-value">Operational • v4.8.2</span>
-            </div>
-
-            <div className="telemetry-badge-card">
-              <div className="telemetry-header">
-                <Lock size={12} className="telemetry-icon-gold" />
-                <span className="telemetry-label">Session Protocol</span>
-              </div>
-              <span className="telemetry-value">256-Bit Encrypted</span>
-            </div>
-          </div>
-
-          {/* Editorial Code Quote */}
-          <div className="admin-quote-card">
-            <p className="admin-quote-text">
-              "Depth in journalism requires both intellectual fearlessness and procedural rigor. 
-              Every published word carries public accountability."
-            </p>
-            <span className="admin-quote-author">— Office of the Editor-in-Chief</span>
-          </div>
-
-          {/* Bottom Security Assurance */}
-          <div className="admin-showcase-footer">
-            <span>© {new Date().getFullYear()} Beyond Headlines Media Group</span>
-            <span>All administrative access logged & monitored</span>
+            <ul className="admin-showcase-feature-list">
+              <li>
+                <Check size={16} className="feature-check-icon" />
+                <span>Publish and edit news dispatches</span>
+              </li>
+              <li>
+                <Check size={16} className="feature-check-icon" />
+                <span>Manage editorial desks and breaking alerts</span>
+              </li>
+              <li>
+                <Check size={16} className="feature-check-icon" />
+                <span>Moderate reader discussions and community</span>
+              </li>
+            </ul>
           </div>
         </div>
 
         {/* ========================================================
-            RIGHT COLUMN: PREMIUM AUTHENTICATION FORM
+            RIGHT COLUMN: FOCUSED SIGN-IN FORM
             ======================================================== */}
         <div className="admin-auth-panel">
           <div className="admin-auth-inner">
-            {/* Back to main site */}
+            {/* Back link */}
             <div className="admin-return-bar">
               <Link to="/" className="admin-return-link">
                 <ArrowLeft size={14} /> Back to public site
               </Link>
-              <div className="admin-badge-secure">
-                <ShieldCheck size={13} />
-                <span>RESTRICTED ACCESS</span>
-              </div>
             </div>
 
             {/* Title Lockup */}
             <div className="admin-form-header">
-              <div className="admin-auth-icon-circle">
-                <Key size={22} className="admin-key-icon" />
-              </div>
               <h1 className="admin-portal-title">Admin Sign In</h1>
               <p className="admin-portal-desc">
-                Enter your credentials to access the editorial management dashboard.
+                Enter your administrative credentials to continue.
               </p>
             </div>
 
@@ -227,7 +166,7 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
                 <CheckCircle2 size={16} className="alert-icon-success" />
                 <div className="alert-text-body">
                   <strong>Access Granted</strong>
-                  <span>Credentials verified. Redirecting to Publishing Console...</span>
+                  <span>Redirecting to Publishing Console...</span>
                 </div>
               </div>
             )}
@@ -237,14 +176,14 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
               {/* Username or Email Address */}
               <div className="admin-input-group">
                 <label className="admin-field-label">
-                  Username or Administrative Email
+                  Username or Email
                 </label>
                 <div className="admin-input-shell">
                   <Mail size={16} className="admin-input-icon" />
                   <input
                     type="text"
                     className="admin-text-input"
-                    placeholder="Enter username or email (e.g. admin or editor@beyondheadlines.com)"
+                    placeholder="Enter your username or email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -255,24 +194,15 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
 
               {/* Password */}
               <div className="admin-input-group">
-                <div className="admin-label-flex">
-                  <label className="admin-field-label">
-                    Password / Access Key
-                  </label>
-                  <button
-                    type="button"
-                    className="admin-forgot-btn"
-                    onClick={() => alert('For security protocol or administrative access resets, please contact security-ops@beyondheadlines.com.')}
-                  >
-                    Forgot key?
-                  </button>
-                </div>
+                <label className="admin-field-label">
+                  Password
+                </label>
                 <div className="admin-input-shell">
                   <Lock size={16} className="admin-input-icon" />
                   <input
                     type={showPassword ? 'text' : 'password'}
                     className="admin-text-input"
-                    placeholder="Enter your security password"
+                    placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -282,45 +212,14 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
                     type="button"
                     className="admin-password-toggle"
                     onClick={() => setShowPassword(!showPassword)}
-                    title={showPassword ? 'Hide security key' : 'Show security key'}
+                    title={showPassword ? 'Hide password' : 'Show password'}
                   >
                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
                 </div>
               </div>
 
-              {/* Optional 2FA PIN toggle */}
-              <div className="admin-two-factor-row">
-                <button
-                  type="button"
-                  className="admin-toggle-pin-btn"
-                  onClick={() => setShowPinInput(!showPinInput)}
-                >
-                  <Key size={13} />
-                  <span>{showPinInput ? 'Hide Hardware Token Field' : '+ Enter Hardware Token / 2FA PIN (Optional)'}</span>
-                </button>
-              </div>
-
-              {showPinInput && (
-                <div className="admin-input-group admin-pin-input-group">
-                  <label className="admin-field-label">
-                    Hardware Authenticator PIN (Optional)
-                  </label>
-                  <div className="admin-input-shell">
-                    <ShieldCheck size={16} className="admin-input-icon" />
-                    <input
-                      type="text"
-                      className="admin-text-input"
-                      placeholder="e.g., 849-201"
-                      value={twoFactorPin}
-                      onChange={(e) => setTwoFactorPin(e.target.value)}
-                      maxLength={10}
-                    />
-                  </div>
-                </div>
-              )}
-
-              {/* Workstation Options */}
+              {/* Remember me */}
               <div className="admin-options-row">
                 <label className="admin-remember-label">
                   <input
@@ -329,7 +228,7 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
                   />
-                  <span>Remember this workstation for 30 days</span>
+                  <span>Remember this device</span>
                 </label>
               </div>
 
@@ -342,7 +241,7 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
                 {loading ? (
                   <span className="admin-btn-spinner-content">
                     <span className="admin-spinner" />
-                    <span>Verifying Security Protocol...</span>
+                    <span>Signing in...</span>
                   </span>
                 ) : (
                   <span className="admin-btn-label-content">
@@ -352,24 +251,6 @@ export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', o
                 )}
               </button>
             </form>
-
-            {/* Footer Credentials Note & Staff Registration */}
-            <div className="admin-form-extra-actions">
-              <button
-                type="button"
-                className="admin-register-link-btn"
-                onClick={() => alert('Staff Onboarding: To request correspondent credentials or bureau editor access, please contact the publishing board at editorial-board@beyondheadlines.com.')}
-              >
-                Request Editorial / Bureau Account
-              </button>
-            </div>
-
-            <div className="admin-security-audit-footer">
-              <ShieldCheck size={14} className="audit-shield-icon" />
-              <span>
-                Restricted editorial system • Unauthorized access is monitored & strictly prohibited
-              </span>
-            </div>
           </div>
         </div>
       </div>
