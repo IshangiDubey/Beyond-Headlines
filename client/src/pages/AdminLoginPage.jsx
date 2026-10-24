@@ -12,7 +12,7 @@ import {
   Check
 } from 'lucide-react';
 
-export default function AdminLoginPage({ apiBaseUrl = 'http://localhost:5000', onAdminLoginSuccess }) {
+export default function AdminLoginPage({ apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'), onAdminLoginSuccess }) {
   const navigate = useNavigate();
   const showcaseRef = useRef(null);
 

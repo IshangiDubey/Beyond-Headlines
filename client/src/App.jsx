@@ -13,7 +13,7 @@ import HomePage from './pages/HomePage';
 import ArticleDetailPage from './pages/ArticleDetailPage';
 import './App.css';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
 export default function App() {
   const location = useLocation();
